@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="sosiabook">
+<head>
+	<title>Sosiabook - buscar</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+	<script type="text/javascript" src="vendor/angular/angular.min.js"></script>
+	<script type="text/javascript" src="vendor/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="vendor/angular-resource/angular-resource.min.js"></script>
+	<script type="text/javascript" src="vendor/semantic/dist/semantic.min.js"></script>
+
+	<script type="text/javascript" src="app/app.module.js"></script>
+	<script type="text/javascript" src="app/controllers/buscar.js"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="vendor/semantic/dist/semantic.min.css">
+</head>
+<body ng-controller="BuscarController">
+	<div class="ui four item menu">
+	  <a class="active item">Inicio</a>
+	  <a class="item">Perfil</a>
+	  <a class="item">
+		    <div class="ui search">
+			  <div class="ui icon input">
+			    <input id="busca" class="prompt" type="text" ng-model="info.sosiaDe" placeholder="vaga para sósia de...">
+			    <i class="search icon"></i>
+			  </div>
+			  <div class="results"></div>
+			</div>
+  	   </a>
+	  <a class="item">
+			<div class="ui dropdown">
+			  <div class="text">Configurações </div>
+			  <i class="dropdown icon"></i>
+			  <div class="menu">
+			    <div class="item">New</div>
+			    <div class="item">
+			      <span class="description">ctrl + o</span>
+			      Open...
+				</div>	  	
+			  </div>
+			</div>
+	  </a>
+	</div>
+
+	<div class="ui two column centered grid">
+		<div class="column">
+			<div class="ui segments">
+			  <div class="ui segment">
+			    <p>Filtros  </p>
+			  </div>
+			  <div class="ui secondary segment">
+			    <div class="ui stackable four column grid">
+			    	<div class="column">
+				    		<div class="ui input">
+							  <input type="text" placeholder="Altura" ng-model="info.altura">
+							</div>
+			    	</div>
+			    	<div class="column">
+			    		<div class="column">
+				    		<div class="ui input">
+							  <input type="text" placeholder="Idade aproximada" ng-model="info.idade">
+							</div>
+			    	</div>
+			    	</div>
+			    	<div class="column">
+			    		<div class="column">
+				    		<div class="ui input">
+							  <input type="text" placeholder="Peso" ng-model="info.peso"> 
+							</div>
+			    	</div>
+			    	</div>
+			    	<div class="column">
+			    		<div class="column">
+				    		<div class="ui input">
+							  <input type="text" placeholder="Cor" ng-model="info.cor">
+							</div>
+			    	</div>
+			    	</div>
+			    </div>
+			    <button class="ui secondary button" ng-click="buscar()">
+				  Confirmar
+				</button>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ui  column centered grid" ng-show="result != null">
+		<div class="column">
+			<div class="ui segments">
+				<div class="ui segment">
+				    <p>Resultados</p>
+				</div>
+				<div class="ui secondary segment">
+					<div class="ui three column grid">
+					  <div class="column" ng-repeat="resultado in result">
+					    <div class="ui segment">
+					      <p>Nós somos a agência de talentos {{resultado.agencia}}. Essa vaga é para o sósia do ator {{resultado.sosiaDe}} , o ator que se candidatar terá o papel do ator deve ser {{resultado.cor}}, {{resultado.altura}} de altura e ter por volta de {{resultado.peso}} kilos. Valerá o papel para filmes internacionais podendo ceder entrevistas a rolling stones e outras revistas famosas</p>
+					      <p><button class="tiny ui green button">Candidate-se!</button></p>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
