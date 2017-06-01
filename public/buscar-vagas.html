@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="sosiabook">
 <head>
-	<title>Sosiabook - buscar</title>
+	<title>Sosiabook - buscar vagas</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
 	<script type="text/javascript" src="vendor/angular/angular.min.js"></script>
@@ -52,27 +52,27 @@
 			  <div class="ui secondary segment">
 			    <div class="ui stackable four column grid">
 			    	<div class="column">
-				    		<div class="ui input">
+				    		<div class="ui mini input">
 							  <input type="text" placeholder="Altura" ng-model="info.altura">
 							</div>
 			    	</div>
 			    	<div class="column">
 			    		<div class="column">
-				    		<div class="ui input">
+				    		<div class="ui mini input">
 							  <input type="text" placeholder="Idade aproximada" ng-model="info.idade">
 							</div>
 			    	</div>
 			    	</div>
 			    	<div class="column">
 			    		<div class="column">
-				    		<div class="ui input">
+				    		<div class="ui mini input">
 							  <input type="text" placeholder="Peso" ng-model="info.peso"> 
 							</div>
 			    	</div>
 			    	</div>
 			    	<div class="column">
 			    		<div class="column">
-				    		<div class="ui input">
+				    		<div class="ui mini input">
 							  <input type="text" placeholder="Cor" ng-model="info.cor">
 							</div>
 			    	</div>
@@ -97,7 +97,7 @@
 					  <div class="column" ng-repeat="resultado in result">
 					    <div class="ui segment">
 					      <p>Nós somos a agência de talentos {{resultado.agencia}}. Essa vaga é para o sósia do ator {{resultado.sosiaDe}} , o ator que se candidatar terá o papel do ator deve ser {{resultado.cor}}, {{resultado.altura}} de altura e ter por volta de {{resultado.peso}} kilos. Valerá o papel para filmes internacionais podendo ceder entrevistas a rolling stones e outras revistas famosas</p>
-					      <p><button class="tiny ui green button">Candidate-se!</button></p>
+					      <p><button class="tiny ui green button" ng-click="candidatar(resultado.agencia,resultado.sosiaDe)">Candidate-se!</button></p>
 					    </div>
 					  </div>
 					</div>
@@ -105,6 +105,48 @@
 			</div>
 		</div>
 	</div>
+
+
+	<div class="ui modal confirmar">
+	  <i class="close icon"></i>
+	  <div class="header">
+	    Candidatar-se!
+	  </div>
+	  <div class="content">
+	    <div class="left">
+		      Você passará a conconcorrer a essa vaga de sósia do ator {{nomeDoSosiaDaVaga}} pela produtora {{agenciaEscolhida}} seguindo os requisitos especificados na descrição. 
+	    </div>
+	  </div>
+	  <div class="actions">
+	    <div class="ui cancel button">
+	      Cancelar
+	    </div>
+	    <div class="ui green button ok" ng-click="confirmarCandidatura()">
+	      Quero concorrer
+	    </div>
+	  </div>
+	</div>
+
+	<div class="ui modal realizado">
+		 <i class="close icon"></i>
+		 <div class="header">
+		    Feito!
+		</div>
+		<div class="content">
+		<div class="left ui success message ">
+		    <div class="header"> 	
+		      	Agora você está concorrendo a vaga
+		      </div>
+		      <p>Caso seja selecionado a produtora entrará em contato diretamente pelo nosso chat. Fique esperto e oa sorte!</p>
+	    </div>
+	  </div>
+	  <div class="actions">
+	    <div class="ui green button ok">
+	      Obrigado
+	    </div>
+	  </div>
+	</div>
+	
 
 </body>
 </html>

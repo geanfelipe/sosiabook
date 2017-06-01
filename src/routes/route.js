@@ -5,4 +5,13 @@ module.exports = function(app) {
 
 	app.route('/api/buscar')
 		.get(controller.buscarPapeis);
+
+	app.route('/api/candidatar')
+		.post(controller.concorrer)
+
+	app.route('/api/sosias')
+		.get(controller.listSosias)
+
+	app.route('/api/contratar')
+		.post(controller.contratar)
 }

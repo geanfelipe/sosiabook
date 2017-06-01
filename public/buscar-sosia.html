@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html ng-app="sosiabook">
+<head>
+	<title>Sosiabook - buscar sósia</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+	<script type="text/javascript" src="vendor/angular/angular.min.js"></script>
+	<script type="text/javascript" src="vendor/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="vendor/angular-resource/angular-resource.min.js"></script>
+	<script type="text/javascript" src="vendor/semantic/dist/semantic.min.js"></script>
+
+	<script type="text/javascript" src="app/app.module.js"></script>
+	<script type="text/javascript" src="app/controllers/buscar.js"></script>
+
+	 <!--- Site CSS -->
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/reset.css">
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/site.css">
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/grid.css">
+
+  <!--- Component CSS -->
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/icon.css">
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/button.css">
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/card.css">
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/label.css">
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/image.css">
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/reveal.css">
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/dimmer.css">
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/rating.css">
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/transition.css">
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/components/popup.css">
+
+  <!--- Component JS -->
+  <script type="text/javascript" src="vendor/semantic/dist/components/popup.js"></script>
+  <script type="text/javascript" src="vendor/semantic/dist/components/dimmer.js"></script>
+  <script type="text/javascript" src="vendor/semantic/dist/components/rating.js"></script>
+  <script type="text/javascript" src="vendor/semantic/dist/components/transition.js"></script>
+<script>
+  $(document)
+    .ready(function() {
+      $('.special.card .image').dimmer({
+        on: 'hover'
+      });
+      $('.star.rating')
+        .rating()
+      ;
+      $('.card .dimmer')
+        .dimmer({
+          on: 'hover'
+        })
+      ;
+    })
+  ;
+  </script>
+
+	<link rel="stylesheet" type="text/css" href="vendor/semantic/dist/semantic.min.css">
+</head>
+<body ng-controller="BuscarController">
+	<div class="ui four item menu">
+	  <a class="active item">Inicio</a>
+	  <a class="item">Perfil</a>
+	  <a class="item">
+		    <div class="ui search">
+			  <div class="ui icon input">
+			    <input id="buscarsosia" class="prompt" type="text" ng-model="info.sosiaDe" placeholder="buscar sósia de...">
+			    <i class="search icon"></i>
+			  </div>
+			  <div class="results"></div>
+			</div>
+  	   </a>
+	  <a class="item">
+			<div class="ui dropdown">
+			  <div class="text">Configurações </div>
+			  <i class="dropdown icon"></i>
+			  <div class="menu">
+			    <div class="item">New</div>
+			    <div class="item">
+			      <span class="description">ctrl + o</span>
+			      Open...
+				</div>	  	
+			  </div>
+			</div>
+	  </a>
+	</div>
+
+	<div class="ui two column centered grid">
+		<div class="column">
+			<div class="ui segments">
+			  <div class="ui segment">
+			    <p>Filtros  </p>
+			  </div>
+			  <div class="ui secondary segment">
+			    <div class="ui stackable four column grid">
+			    	<div class="column">
+				    		<div class="ui mini input">
+							  <input type="text" placeholder="Altura" ng-model="info.altura">
+							</div>
+			    	</div>
+			    	<div class="column">
+			    		<div class="column">
+				    		<div class="ui mini input">
+							  <input type="text" placeholder="Idade aproximada" ng-model="info.idade">
+							</div>
+			    	</div>
+			    	</div>
+			    	<div class="column">
+			    		<div class="column">
+				    		<div class="ui mini input">
+							  <input type="text" placeholder="Peso" ng-model="info.peso"> 
+							</div>
+			    	</div>
+			    	</div>
+			    	<div class="column">
+			    		<div class="column">
+				    		<div class="ui mini input">
+							  <input type="text" placeholder="Cor" ng-model="info.cor">
+							</div>
+			    	</div>
+			    	</div>
+			    </div>
+			    <button class="ui secondary button" ng-click="buscarSosia()">
+				  Confirmar
+				</button>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ui segment" ng-show="sosias != null">
+		<div class="ui four cards" >
+			<div class="card" ng-repeat="sosia in sosias">
+			    <div class="image">
+			      <img src="img/image.png">
+			    </div>
+			    <div class="extra center aligned">
+			      <div data-rating="5" class="ui star rating"></div>
+			      <div class="content">
+				      <a class="header">{{sosia.nome}},{{sosia.idade}} anos</a>
+				      <div class="meta">
+				        <span class="date">
+				        	<button class="mini green ui button" ng-click="contratar(sosia.nome)">Contratar</button>
+				        </span>
+				      </div>
+				   </div>
+			    </div>
+			</div>
+			<script >
+			$('.special.card .image').dimmer({
+			        on: 'hover'
+			      });
+			      $('.star.rating')
+			        .rating()
+			      ;
+			      $('.card .dimmer')
+			        .dimmer({
+			          on: 'hover'
+			        })
+			      ;
+			</script>
+		</div>
+
+
+		<div class="ui modal confirmarContrato">
+		  <i class="close icon"></i>
+		  <div class="header">
+		    Contratar
+		  </div>
+		  <div class="content">
+		    <div class="left">
+			      Você contratará {{nome}} para o sósia do {{info.sosiaDe}} em sua produção. 
+		    </div>
+		  </div>
+		  <div class="actions">
+		    <div class="ui cancel button">
+		      Cancelar
+		    </div>
+		    <div class="ui green button ok" ng-click="confirmarContrato()">
+		      Contratar
+		    </div>
+		  </div>
+		</div>
+
+		<div class="ui modal contratorealizado">
+			 <i class="close icon"></i>
+			 <div class="header">
+			    Sucesso
+			</div>
+			<div class="content">
+			<div class="left ui success message ">
+			    <div class="header"> 	
+			      	Você contratou {{nome}}
+			      </div>
+			      <p>Após esta confirmação fale diretamente com o contratado pelo nosso chat!</p>
+		    </div>
+		  </div>
+		  <div class="actions">
+		    <div class="ui green button ok">
+		      Obrigado
+		    </div>
+		  </div>
+		</div>
+	</div>
+
+</body>
+</html>
